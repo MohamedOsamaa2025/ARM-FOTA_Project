@@ -1,0 +1,20 @@
+ATE0
+AT+CWMODE=1
+AT+CWJAP_CUR="Mo","12345678"
+
+
+AT+CIPSTART="TCP","128.204.223.111",80
+
+AT+CIPSEND=44
+http://mohamedbakr.serv00.net/get_line.php
+
+AT+CIPSEND=46
+GET http://mohamedbakr.serv00.net/Record.txt
+
+AT+CIPCLOSE
+
+
+AT+UART=9600,8,1,0,0
+AT+UART_DEF=9600,8,1,0,0
+AT+UART_DEF=115200,8,1,0,0
+

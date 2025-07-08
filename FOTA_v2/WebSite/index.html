@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload HEX File</title>
+    <style>
+        /* Apply white color to all text elements */
+        body, h2, label, input[type="submit"] {
+            color: white;
+        }
+        
+        /* Style the body background */
+        body {
+            background-image: url('Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Centers the content horizontally */
+            align-items: center;     /* Centers the content vertically */
+        }
+
+        /* Style input elements */
+        input[type="file"] {
+            color: white; /* Text color for file input */
+        }
+
+        input[type="submit"] {
+            background-color: white; /* Background color for the submit button */
+            color: black; /* Text color for the submit button */
+            border: none; /* Remove default border */
+            padding: 10px 20px; /* Add some padding */
+            cursor: pointer; /* Change cursor on hover */
+        }
+
+        input[type="submit"]:hover {
+            background-color: white; /* Keep the background color on hover */
+        }
+
+        .container {
+            text-align: center; /* Center the text inside the container */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Upload HEX File</h2>
+
+        <!-- File Upload Form -->
+        <form id="uploadForm" action="Script.php" method="post" enctype="multipart/form-data">
+            <label for="hexFile">~~~~~Choose a HEX file:</label>
+            <input type="file" id="hexFile" name="hexFile" accept=".hex" required>
+            <br><br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+    <!-- JavaScript to validate file -->
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            const fileInput = document.getElementById('hexFile');
+            const filePath = fileInput.value;
+            const allowedExtensions = /(\.hex)$/i;
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Please upload a valid HEX file.');
+                fileInput.value = '';
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+
+</body>
+</html>
